@@ -15,7 +15,7 @@ void init_graphics();
 char getkey();
 void sleep_ms(long ms);
 void draw_pixel(int x, int y, color_t color);
-void draw_rect(int x1, int y1, int width, int height, color_t c);
+void draw_rect(int x, int y, int width, int height, color_t c);
 color_t getColor(color_t red, color_t green, color_t blue);
 
 char *startOfFile = 0;
@@ -28,10 +28,12 @@ struct fb_fix_screeninfo fixedInfo;
 int main(int argc, char** argv)
 {
     int i;
+    int j;
 
     init_graphics();
 
-    for(i = 0; i < 1000; i++) draw_pixel(i, i, getColor(0, 15, 20));
+    draw_rect(100, 0, 200, 400, getColor(20, 15, 0));
+
 
     exit_graphics();
 
@@ -98,10 +100,10 @@ void init_graphics()
 {
 
 
-
     // Open the file for reading and writing
     fd = open("/dev/fb0", O_RDWR); //Open the /dev/fb0 file using read/write
-    if (!fd) {
+    if (!fd)
+    {
         printf("Error opening file.\n");
         return(-1);
     }
@@ -122,8 +124,9 @@ void init_graphics()
 
 
     screensize = varInfo.yres_virtual * fixedInfo.line_length;
-    startOfFile = (char*)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
+
+    startOfFile = (char*)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
     return 0;
 
@@ -145,13 +148,22 @@ void draw_pixel(int x, int y, color_t color)
     // draw...
     // just fill upper half of the screen with something
 
-    int index = (y * varInfo.xres_virtual) + x;
+    int index = (y * fixedInfo.line_length) + x;
 
     *(startOfFile + index) = color;
 
 }
 
-void draw_rect(int x1, int y1, int width, int height, color_t c)
+void draw_rect(int x, int y, int width, int height, color_t c)
 {
+
+    for(i = x; i < x+ width; i++)
+    {
+        for(j = y; j < y + height; j++)
+        {
+            draw_pixel(i, j, c);
+        }
+    }
+
 
 }
