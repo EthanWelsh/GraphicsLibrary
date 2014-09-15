@@ -32,7 +32,11 @@ int main(int argc, char** argv)
 
     init_graphics();
 
-    draw_rect(100, 0, 200, 400, getColor(20, 15, 0));
+    draw_rect(80, 35, 350, 200, getColor(25, 10, 15));
+
+    sleep_ms(1000);
+
+    draw_rect(800, 35, 350, 200, getColor(5, 15, 28));
 
 
     exit_graphics();
@@ -102,11 +106,9 @@ void init_graphics()
 
     // Open the file for reading and writing
     fd = open("/dev/fb0", O_RDWR); //Open the /dev/fb0 file using read/write
-    if (!fd)
-    {
-        printf("Error opening file.\n");
-        return(-1);
-    }
+    if (!fd) printf("Error opening file.\n");
+
+
 
     printf("The framebuffer device was opened successfully.\n");
 
@@ -140,7 +142,7 @@ char getkey()
 
 void sleep_ms(long ms)
 {
-
+    nanosleep(ms * 1000000, NULL);
 }
 
 void draw_pixel(int x, int y, color_t color)
@@ -156,6 +158,9 @@ void draw_pixel(int x, int y, color_t color)
 
 void draw_rect(int x, int y, int width, int height, color_t c)
 {
+
+    int i;
+    int j;
 
     for(i = x; i < x+ width; i++)
     {
