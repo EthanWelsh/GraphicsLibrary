@@ -34,9 +34,14 @@ int main(int argc, char** argv)
 
     draw_rect(80, 35, 350, 200, getColor(25, 10, 15));
 
-    sleep_ms(1000);
+    sleep_ms(800);
+
+    clear_screen();
+
+    sleep_ms(800);
 
     draw_rect(800, 35, 350, 200, getColor(5, 15, 28));
+
 
 
     exit_graphics();
@@ -91,7 +96,7 @@ color_t getColor(color_t red, color_t green, color_t blue)
 
 void clear_screen()
 {
-
+    printf("\033[2J");
 }
 
 void exit_graphics()
@@ -108,41 +113,24 @@ void init_graphics()
     fd = open("/dev/fb0", O_RDWR); //Open the /dev/fb0 file using read/write
     if (!fd) printf("Error opening file.\n");
 
-
-
     printf("The framebuffer device was opened successfully.\n");
-
-
-
-    //********** Get fixed screen information **********
-    //ARG1: The first argument is the file descriptor
-    //ARG2: The second argument is a device-dependent request code.
-    //ARG3: The third argument is an untyped pointer to memory
-
-
 
     if (ioctl(fd, FBIOGET_FSCREENINFO, &fixedInfo)) printf("Error reading fixed information.\n");
     if (ioctl(fd, FBIOGET_VSCREENINFO, &varInfo)) printf("Error reading variable information.\n");
 
-
     screensize = varInfo.yres_virtual * fixedInfo.line_length;
 
-
     startOfFile = (char*)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-
-    return 0;
-
 }
 
 char getkey()
 {
-
-    return 0;
+    int select(int nfds, fd_set *readfds, NULL, NULL, 0);
 }
 
 void sleep_ms(long ms)
 {
-    nanosleep(ms * 1000000, NULL);
+    if(nanosleep(ms * 1000000, NULL) != 0) printf("ERROR WITH TIME\n");
 }
 
 void draw_pixel(int x, int y, color_t color)
