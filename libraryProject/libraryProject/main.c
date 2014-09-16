@@ -111,7 +111,7 @@ void exit_graphics()
 
     ioctl(1, TCGETS, &terminalAttributes);
 
-    terminalAttributes.c_lflag = (1 | ECHONL | 1 | ISIG | IEXTEN);
+    terminalAttributes.c_lflag = (ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 
     ioctl(1, TCSETS, &terminalAttributes);
 
