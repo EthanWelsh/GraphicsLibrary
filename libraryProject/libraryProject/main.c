@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
+#include <termios.h>
 
 typedef unsigned short color_t;
 
@@ -18,7 +19,8 @@ void draw_pixel(int x, int y, color_t color);
 void draw_rect(int x, int y, int width, int height, color_t c);
 color_t getColor(color_t red, color_t green, color_t blue);
 
-char *startOfFile = 0;
+color_t *startOfFile = 0;
+
 long int screensize = 0;
 int fd = 0;
 struct fb_var_screeninfo varInfo;
@@ -27,8 +29,6 @@ struct fb_fix_screeninfo fixedInfo;
 
 int main(int argc, char** argv)
 {
-    int i;
-    int j;
 
     init_graphics();
 
@@ -40,9 +40,10 @@ int main(int argc, char** argv)
 
     sleep_ms(800);
 
-    draw_rect(800, 35, 350, 200, getColor(5, 15, 28));
+    draw_rect(0, 0, 640, 480, getColor(5, 15, 28));
 
 
+    while(1)getkey();
 
     exit_graphics();
 
@@ -67,9 +68,7 @@ int main(int argc, char** argv)
     */
 
     return 0;
-
 }
-
 
 color_t getColor(color_t red, color_t green, color_t blue)
 {
@@ -96,7 +95,7 @@ color_t getColor(color_t red, color_t green, color_t blue)
 
 void clear_screen()
 {
-    printf("\033[2J");
+    write(2, "\033[2J", 5);
 }
 
 void exit_graphics()
@@ -107,8 +106,6 @@ void exit_graphics()
 
 void init_graphics()
 {
-
-
     // Open the file for reading and writing
     fd = open("/dev/fb0", O_RDWR); //Open the /dev/fb0 file using read/write
     if (!fd) printf("Error opening file.\n");
@@ -120,33 +117,42 @@ void init_graphics()
 
     screensize = varInfo.yres_virtual * fixedInfo.line_length;
 
-    startOfFile = (char*)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    startOfFile = mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 }
 
 char getkey()
 {
-    int select(int nfds, fd_set *readfds, NULL, NULL, 0);
+    struct termios terminalAttributes;
+    char *name;
+
+    ioctl(fd, TCGETS, &terminalAttributes);
+
+    terminalAttributes.c_iflag = terminalAttributes.c_iflag | (!(ICANON));
+    terminalAttributes.c_iflag = terminalAttributes.c_iflag | (!(ECHO));
+
+    ioctl(fd, TCSETS, &terminalAttributes);
+
+
 }
 
 void sleep_ms(long ms)
 {
-    if(nanosleep(ms * 1000000, NULL) != 0) printf("ERROR WITH TIME\n");
+    struct timespec t;
+
+    t.tv_nsec = ms * 1000000;
+    t.tv_sec = 0;
+
+    if(nanosleep(&t, NULL) != 0) printf("ERROR WITH TIME\n");
 }
 
 void draw_pixel(int x, int y, color_t color)
 {
-    // draw...
-    // just fill upper half of the screen with something
-
-    int index = (y * fixedInfo.line_length) + x;
-
+    int index = (y * varInfo.xres_virtual) + x;
     *(startOfFile + index) = color;
-
 }
 
 void draw_rect(int x, int y, int width, int height, color_t c)
 {
-
     int i;
     int j;
 
@@ -157,6 +163,4 @@ void draw_rect(int x, int y, int width, int height, color_t c)
             draw_pixel(i, j, c);
         }
     }
-
-
 }

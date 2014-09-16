@@ -26,7 +26,7 @@
       <file leaf-file-name="main.c" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libraryProject/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="40" selection-start="2940" selection-end="2940" vertical-scroll-proportion="0.5626072" vertical-offset="1577" max-vertical-offset="2520">
+            <state line="127" column="16" selection-start="2988" selection-end="2988" vertical-scroll-proportion="0.2857143" vertical-offset="1725" max-vertical-offset="2580">
               <folding />
             </state>
           </provider>
@@ -48,9 +48,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="59" />
+    <option name="x" value="62" />
     <option name="y" value="22" />
-    <option name="width" value="1221" />
+    <option name="width" value="1218" />
     <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -79,7 +79,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -108,6 +107,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -153,14 +153,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="22" width="1221" height="778" extended-state="0" />
+    <frame x="62" y="22" width="1218" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.06871345" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958263" sideWeight="0.9312866" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24937238" sideWeight="0.9312866" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -170,6 +169,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.06871345" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -189,6 +189,20 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/libraryProject/main.c">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="2" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0" vertical-offset="1789" max-vertical-offset="2445">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraryProject/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="6" selection-start="2901" selection-end="2901" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2580">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraryProject/main.c">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="4" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1215">
           <folding />
         </state>
@@ -203,7 +217,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/libraryProject/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="40" selection-start="2940" selection-end="2940" vertical-scroll-proportion="0.5626072" vertical-offset="1577" max-vertical-offset="2520">
+        <state line="127" column="16" selection-start="2988" selection-end="2988" vertical-scroll-proportion="0.2857143" vertical-offset="1725" max-vertical-offset="2580">
           <folding />
         </state>
       </provider>
