@@ -34,24 +34,7 @@ int main(int argc, char** argv)
 
     init_graphics();
 
-    draw_rect(80, 35, 350, 200, getColor(25, 10, 15));
-
-    sleep_ms(800);
-
-    clear_screen();
-
-    sleep_ms(800);
-
-    draw_rect(0, 0, 640, 480, getColor(5, 15, 28));
-
-
-    getkey();
-
-    sleep_ms(800);
-
-    exit_graphics();
-
-    /*char key;
+    char key;
     int x = (640-20)/2;
     int y = (480-20)/2;
 
@@ -69,7 +52,7 @@ int main(int argc, char** argv)
         sleep_ms(20);
     } while(key != 'q');
 
-    */
+    exit_graphics();
 
     return 0;
 }
@@ -162,7 +145,7 @@ char getkey()
     {
         char keyPressed;
         read(0, &keyPressed, sizeof(char));
-        printf("You pressed %c", keyPressed);
+        return keyPressed;
     }
 
 }
