@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,7 +5,10 @@
 #include <fcntl.h>
 #include <linux/fb.h>
 #include <sys/mman.h>
+#include <sys/ioctl.h>
+#include <time.h>
 #include <termios.h>
+#include <unistd.h>
 
 typedef unsigned short color_t;
 
@@ -43,7 +45,9 @@ int main(int argc, char** argv)
     draw_rect(0, 0, 640, 480, getColor(5, 15, 28));
 
 
-    while(1)getkey();
+    getkey();
+
+    sleep_ms(800);
 
     exit_graphics();
 
@@ -100,8 +104,27 @@ void clear_screen()
 
 void exit_graphics()
 {
+
+
+    struct termios terminalAttributes;
+    char *name;
+
+    ioctl(1, TCGETS, &terminalAttributes);
+
+    terminalAttributes.c_lflag = (1 | ECHONL | 1 | ISIG | IEXTEN);
+
+    ioctl(1, TCSETS, &terminalAttributes);
+
+
+
     munmap(startOfFile, screensize);
+
+
     close(fd);
+
+
+
+
 }
 
 void init_graphics()
@@ -125,13 +148,22 @@ char getkey()
     struct termios terminalAttributes;
     char *name;
 
-    ioctl(fd, TCGETS, &terminalAttributes);
+    fd_set fileDescriptorSet;
+    FD_SET(0, &fileDescriptorSet); // ADD STDIO into set
 
-    terminalAttributes.c_iflag = terminalAttributes.c_iflag | (!(ICANON));
-    terminalAttributes.c_iflag = terminalAttributes.c_iflag | (!(ECHO));
+    ioctl(1, TCGETS, &terminalAttributes);
 
-    ioctl(fd, TCSETS, &terminalAttributes);
+    terminalAttributes.c_lflag = (0 | ECHONL | 0 | ISIG | IEXTEN);
 
+    ioctl(1, TCSETS, &terminalAttributes);
+
+
+    if(select(1, &fileDescriptorSet, NULL, NULL, 0) == 1)
+    {
+        char keyPressed;
+        read(0, &keyPressed, sizeof(char));
+        printf("You pressed %c", keyPressed);
+    }
 
 }
 
