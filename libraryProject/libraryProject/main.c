@@ -27,6 +27,7 @@ long int screensize = 0;
 int fd = 0;
 struct fb_var_screeninfo varInfo;
 struct fb_fix_screeninfo fixedInfo;
+fd_set fileDescriptorSet;
 
 
 int main(int argc, char** argv)
@@ -51,6 +52,7 @@ int main(int argc, char** argv)
         draw_rect(x, y, 20, 20, 15);
         sleep_ms(20);
     } while(key != 'q');
+
 
     exit_graphics();
 
@@ -82,7 +84,7 @@ color_t getColor(color_t red, color_t green, color_t blue)
 
 void clear_screen()
 {
-    write(2, "\033[2J", 5);
+    write(1, "\033[2J", 5);
 }
 
 void exit_graphics()
@@ -124,15 +126,12 @@ void init_graphics()
     screensize = varInfo.yres_virtual * fixedInfo.line_length;
 
     startOfFile = mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-}
 
-char getkey()
-{
     struct termios terminalAttributes;
-    char *name;
 
-    fd_set fileDescriptorSet;
-    FD_SET(0, &fileDescriptorSet); // ADD STDIO into set
+
+
+
 
     ioctl(1, TCGETS, &terminalAttributes);
 
@@ -141,12 +140,29 @@ char getkey()
     ioctl(1, TCSETS, &terminalAttributes);
 
 
-    if(select(1, &fileDescriptorSet, NULL, NULL, 0) == 1)
+
+
+
+}
+
+
+char getkey()
+{
+
+    struct timeval t; // Create timeval struct in order to set the timespan parameter.
+    t.tv_sec = 0;
+
+    FD_SET(0, &fileDescriptorSet); // ADD STDIO into set
+
+    char keyPressed;
+
+    if(select(1, &fileDescriptorSet, NULL, NULL, &t))
     {
-        char keyPressed;
         read(0, &keyPressed, sizeof(char));
         return keyPressed;
     }
+
+    return 0;
 
 }
 
@@ -157,7 +173,7 @@ void sleep_ms(long ms)
     t.tv_nsec = ms * 1000000;
     t.tv_sec = 0;
 
-    if(nanosleep(&t, NULL) != 0) printf("ERROR WITH TIME\n");
+    nanosleep(&t, NULL);
 }
 
 void draw_pixel(int x, int y, color_t color)
