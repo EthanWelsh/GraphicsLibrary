@@ -133,6 +133,7 @@ void init_graphics()
 
 
 
+
     ioctl(1, TCGETS, &terminalAttributes);
 
     terminalAttributes.c_lflag = (0 | ECHONL | 0 | ISIG | IEXTEN);
@@ -149,7 +150,7 @@ void init_graphics()
 char getkey()
 {
 
-    struct timeval t; // Create timeval struct in order to set the timespan parameter.
+    struct timeval t = {0}; // Create timeval struct in order to set the timespan parameter.
     t.tv_sec = 0;
 
     FD_SET(0, &fileDescriptorSet); // ADD STDIO into set
