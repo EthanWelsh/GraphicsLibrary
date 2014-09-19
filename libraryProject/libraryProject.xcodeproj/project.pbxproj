@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4986C0B8B8D0CCDDB687657D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 4986CB1D0BBD5BA70B3C038C /* main.c */; };
-		4986C7DDCCA025E70B97A37A /* online.c in Sources */ = {isa = PBXBuildFile; fileRef = 4986CCA0911F3E39561130F4 /* online.c */; };
+		4986C0B8B8D0CCDDB687657D /* library.c in Sources */ = {isa = PBXBuildFile; fileRef = 4986CB1D0BBD5BA70B3C038C /* library.c */; };
+		4986CDEE860AA251816980E1 /* test.c in Sources */ = {isa = PBXBuildFile; fileRef = 4986C9A99A5C89C505983BA3 /* test.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +25,9 @@
 
 /* Begin PBXFileReference section */
 		4986C217FDE9C97947E72862 /* libraryProject.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = libraryProject.1; sourceTree = "<group>"; };
+		4986C9A99A5C89C505983BA3 /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
 		4986CAE79FF6113A1FDD5975 /* libraryProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libraryProject; sourceTree = BUILT_PRODUCTS_DIR; };
-		4986CB1D0BBD5BA70B3C038C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		4986CCA0911F3E39561130F4 /* online.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = online.c; sourceTree = "<group>"; };
+		4986CB1D0BBD5BA70B3C038C /* library.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = library.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +60,9 @@
 		4986C4A541B5F772D049F1D2 /* libraryProject */ = {
 			isa = PBXGroup;
 			children = (
-				4986CB1D0BBD5BA70B3C038C /* main.c */,
+				4986CB1D0BBD5BA70B3C038C /* library.c */,
 				4986C217FDE9C97947E72862 /* libraryProject.1 */,
-				4986CCA0911F3E39561130F4 /* online.c */,
+				4986C9A99A5C89C505983BA3 /* test.c */,
 			);
 			path = libraryProject;
 			sourceTree = "<group>";
@@ -117,8 +117,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4986C0B8B8D0CCDDB687657D /* main.c in Sources */,
-				4986C7DDCCA025E70B97A37A /* online.c in Sources */,
+				4986C0B8B8D0CCDDB687657D /* library.c in Sources */,
+				4986CDEE860AA251816980E1 /* test.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
